@@ -3,6 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	//Load des images
+	odesza.load("ODESZA_01.jpg");
+	odeszai.load("ODESZA_02.jpg");
+	purity.load("Purity_01.jpg");
+	chainsmokers.load("chainesmokers_01.jpg");
+
 }
 
 //--------------------------------------------------------------
@@ -12,6 +18,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	
+	//Resolution : 600,600
+	odesza.draw(0,0,300,300);
+	odeszai.draw(300, 0, 300, 300);
+	purity.draw(300, 300, 300, 300);
+	chainsmokers.draw(0, 300, 300, 300);
 
 }
 

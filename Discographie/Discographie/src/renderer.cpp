@@ -9,8 +9,15 @@ Renderer::Renderer()
 	imageBG = nullptr;
 	imageDG = nullptr;
 
-	imageWidth = ofGetWidth();
-	imageHeight = ofGetHeight();
+	verticalOffset = (ofGetWidth() / 100);
+	horizontalOffset = (ofGetHeight() / 100);
+
+	// resize des images 
+	//	X = width - (offset * 3) /2
+	imageWidth = (ofGetWidth() - (horizontalOffset * 3)) / 2;
+	imageHeight = (ofGetHeight() - (verticalOffset * 3)) / 2;
+
+
 }
 
 void Renderer::setup()
@@ -23,34 +30,59 @@ void Renderer::setup()
 	Import("ODESZA_02.jpg", imageHD);
 	Import("chainesmokers_01.jpg", imageBG);
 	Import("Purity_01.jpg", imageDG);
+
 }
 
 void Renderer::draw()
 {	
-	imageHG->draw(0, 0, imageWidth / 2, imageHeight / 2);
-	imageHD->draw(imageWidth /2, 0, imageWidth / 2, imageHeight / 2);
-	imageBG->draw(imageWidth /2, imageHeight / 2, imageWidth / 2, imageHeight / 2);
-	imageDG->draw(0, imageHeight / 2, imageWidth / 2, imageHeight / 2);
+	// dessin TOP LEFT
+	imageHG->draw(
+		horizontalOffset,
+		verticalOffset, 
+		imageWidth, 
+		imageHeight);
+
+	// dessin TOP RIGHT
+	imageHD->draw(
+		imageWidth + (horizontalOffset *2),
+		verticalOffset,
+		imageWidth,
+		imageHeight);
+
+	// dessin BOT LEFT
+	imageBG->draw(
+		horizontalOffset,
+		imageHeight + (verticalOffset * 2),
+		imageWidth,
+		imageHeight);
+
+	// dessin BOT RIGHT
+	imageDG->draw(
+		imageWidth + (horizontalOffset * 2),
+		imageHeight + (verticalOffset * 2),
+		imageWidth,
+		imageHeight);
 }
 
 void Renderer::resize()
 {
-	imageWidth = ofGetWidth();
-	imageHeight = ofGetHeight();
+	// Recalcul du windows size
+	imageWidth = (ofGetWidth() - (horizontalOffset * 3)) / 2;
+	imageHeight = (ofGetHeight() - (verticalOffset * 3)) / 2;
 
+	// redraw des images avec la nouvelle dimension
 	draw();
 }
 
 void Renderer::Import(const string file, ofImage * & Destination)
 {
-	//null ?
+	// Validation
 	if (Destination != nullptr)
 	{
-		ofLog() << "<delete image: " << Destination << ">";
 		delete Destination;
 	}
 
-	//Nouvelle instance de OfImage
+	// Nouvelle instance de OfImage->load
 	Destination = new ofImage;
 	Destination->load(file);
 

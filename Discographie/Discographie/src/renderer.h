@@ -14,6 +14,9 @@ class Renderer
 		int imageWidth;
 		int imageHeight;
 		
+		int verticalOffset;
+		int horizontalOffset;
+
 		Renderer();
 		void setup();
 		void draw();

@@ -22,12 +22,13 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	if (key == ' ')
+		renderer->Export("export", "png");
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+	renderer->resize();
 }
 
 

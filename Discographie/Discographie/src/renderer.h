@@ -17,6 +17,7 @@ class Renderer
 		Renderer();
 		void setup();
 		void draw();
+		void resize();
 
 		void Import(const string file, ofImage * & Destination);
 		void Export(const string file, const string encoding) const;

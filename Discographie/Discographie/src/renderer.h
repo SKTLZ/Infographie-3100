@@ -1,0 +1,26 @@
+#pragma once
+
+#include "ofMain.h"
+
+class Renderer
+{
+	public:
+
+		ofImage * imageHG;
+		ofImage * imageHD;
+		ofImage * imageBG;
+		ofImage * imageDG;
+
+		int imageWidth;
+		int imageHeight;
+		
+		Renderer();
+		void setup();
+		void draw();
+
+		void Import(const string file, ofImage * & Destination);
+		void Export(const string file, const string encoding) const;
+
+		~Renderer();
+};
+
